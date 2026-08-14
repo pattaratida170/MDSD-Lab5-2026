@@ -550,11 +550,22 @@ class HomePage extends StatelessWidget {
 - Gemini แนะนำตรงกับกรอบการตัดสินใจในบทเรียนหรือไม่ มีจุดใดที่ต่างกัน
   
 ```text
+จุดที่ตรงกัน:
+• การมองภาพรวมของ State: Gemini แยกได้ชัดเจนว่าอันไหนเป็น Global State (Dark Mode), Cross-screen State (จำนวนคนถูกใจ) และ Local UI State (Animation หัวใจ)
+• การเลือกใช้ Tool: แนะนำถูกทิศทาง เช่น เรื่องการสลับธีมหรือซิงค์ข้อมูลข้ามหน้าควรใช้ Provider/Riverpod ส่วน Animation ปุ่มเดียวใช้ setState ก็นับว่าเหมาะสม
 
+จุดที่ยังต่าง/ระบุไม่ครบ:
+• ขาดเรื่อง Rebuild Scope: ในบทเรียนน่าจะเน้นเรื่อง Performance ด้วย ซึ่งการใช้ setState ในข้อ 3 แบบที่ Gemini บอก อาจทำให้ทั้ง Widget นั้นถูก Rebuild ไปด้วยโดยไม่จำเป็น ถ้าจะให้ดีควรใช้ AnimatedBuilder หรือ ValueListenableBuilder เพื่อบีบ scope ให้ Rebuild แค่ตัวไอคอน
+• การจัดการ State ข้ามหน้า: Gemini พูดถึงตัว Tool (Riverpod) แต่ไม่ได้เจาะลึกวิธีเขียนเพื่อจำกัดการ Rebuild เช่น การใช้ Consumer หรือ ref.watch/select
 ```
 - หากคำตอบของ Gemini ดูสมเหตุสมผลแต่ยังไม่ครบถ้วน (เช่น ไม่ได้พูดถึงขอบเขตของ Widget) ให้ลองถามคำถามต่อเพื่อขอเหตุผลเพิ่มเติม แล้วบันทึกบทสนทนาไว้ด้วย
 ```text
+"ถ้าข้อ 3 ใช้ setState กับ AnimationController ใน StatefulWidget มันจะสั่งให้ Widget ลูกตัวอื่น Rebuild ไปด้วยไหม? แล้วมีวิธีเขียนเพื่อจำกัดขอบเขต (Rebuild Scope) ให้กระทบเฉพาะตัวไอคอนหัวใจอย่างเดียวหรือเปล่า?"
 
+• AI ยอมรับว่าการสั่ง setState() ใน StatefulWidget จะทำให้ฟังก์ชัน build() ทำงานใหม่ทั้งคลาส ซึ่งส่งผลให้ Widget ลูกตัวอื่นๆ ถูก Rebuild ตามไปด้วย
+• AI แนะนำทางแก้เพื่อ optimization เพิ่มเติม 2 วิธี:
+  1. ใช้ AnimatedBuilder มาหุ้มเฉพาะตัว Icon หัวใจ เพื่อให้เกิดการ re-render แค่จุดนั้น
+  2. แยกปุ่มหัวใจออกไปเป็น StatefulWidget ย่อยอีก class หนึ่ง (Extract Widget) เพื่อให้ขอบเขตของ setState อยู่แค่ภายใน Widget ย่อยเท่านั้น
 
 ```
 
