@@ -243,7 +243,7 @@ class MyApp extends StatelessWidget {
 **คำถาม**: ถ้าต้องเพิ่มหน้าจอ `FavoritesPage` ที่ต้องแสดงรายการที่บันทึกไว้ชุดเดียวกัน แต่ถูก push แยกออกไปเป็นอีก Route หนึ่ง จะเกิดปัญหาอะไรกับโค้ดแบบ Prop Drilling นี้ จงเขียนคำตอบสั้น ๆ 
 
 ```text
-
+เกิดปัญหาการแชร์ State ข้ามหน้า เพราะ _savedItems ถูกเก็บไว้ใน State ของ HomePage เมื่อ push ไปหน้า FavoritesPage ซึ่งอยู่คนละ Route จะไม่สามารถส่งผ่าน Props ตรง ๆ แบบ Prop Drilling ได้ เว้นแต่จะย้าย State ไปไว้ที่จุดสูงสุด ซึ่งจะยิ่งทำให้เกิด Prop Drilling ที่ซับซ้อนและดูแลรักษายาก
 ```
 
 ---
