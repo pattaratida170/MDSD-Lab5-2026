@@ -500,9 +500,9 @@ class HomePage extends StatelessWidget {
 
 > ✅ **Checkpoint 2.2** ทดสอบว่าเมื่อบันทึกสินค้าจากหน้า Home แล้วกดไปหน้า Favorites ตัวเลขและรายการสินค้าตรงกันทันที ลองกดปุ่มถังขยะลบสินค้าออกจากหน้า Favorites แล้วย้อนกลับไปหน้า Home ดูว่าปุ่มของสินค้านั้นกลับมากดซ้ำได้อีกครั้ง ถ่ายภาพหน้าจอทั้งสองหน้าเทียบกันแนบส่ง
 
-```image
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/30817d04-64ae-4a9a-a0f7-fb5d81169c83" />
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/4e69aff5-33f0-4e47-8309-c21f78ef2c8c" />
 
-```
 
 ---
 
